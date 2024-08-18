@@ -1,9 +1,7 @@
 import Link from "next/link";
 
 const nav_links = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/blog/about" },
-  { name: "Contact", href: "/blog/contact" },
   { name: "Posts", href: "/blog/posts" },
 ];
 
@@ -13,7 +11,14 @@ export default async function NavLinks() {
       {nav_links.map((link: any) => {
         return (
           <Link key={link.name} href={link.href}>
-            <p>{link.name}</p>
+            <li>
+              <a
+                className="font-bold text-white transition hover:text-gray-500/75"
+                href={link.href}
+              >
+                {link.name}
+              </a>
+            </li>
           </Link>
         );
       })}

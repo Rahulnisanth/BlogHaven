@@ -8,13 +8,7 @@ export default function Layout({
   return (
     <>
       <Sidebar />
-      <br />
-      <br />
-
-      <h1>Blogs</h1>
-      <hr />
-      <br />
-      {children}
+      <div className="bg-white dark:bg-gray-900 h-screen">{children}</div>
     </>
   );
 }
