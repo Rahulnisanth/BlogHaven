@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-white dark:bg-gray-900 min-h-screen flex items-center justify-center">
+    <div className="bg-white dark:bg-gray-900 min-h-[90vh] flex items-center justify-center">
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           Blog<span className="text-teal-500">Haven.</span>

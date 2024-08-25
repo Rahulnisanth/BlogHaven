@@ -44,7 +44,7 @@ export default function Page() {
                   >
                     {post.title}
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-white">
+                  <p className="mt-5 text-justify line-clamp-3 text-sm leading-6 text-white">
                     {post.content.substring(0, 150)}...
                   </p>
                 </div>
