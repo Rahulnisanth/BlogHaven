@@ -1,8 +1,19 @@
 "use client";
+import { SetStateAction, useState } from "react";
 import posts from "@/app/lib/data";
-import Link from "next/link";
+import Modal from "@/app/components/Modal";
 
 export default function Page() {
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  function openModal(post: SetStateAction<null>) {
+    setSelectedPost(post);
+  }
+
+  function closeModal() {
+    setSelectedPost(null);
+  }
+
   return (
     <>
       <div className="bg-white dark:bg-gray-900 py-24 sm:py-20">
@@ -27,14 +38,14 @@ export default function Page() {
                   </time>
                 </div>
                 <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-teal-500 group-hover:text-gray-600">
-                    <Link href={`/blog/post/${post.id}`}>
-                      <span className="absolute inset-0" />
-                      {post.title}
-                    </Link>
+                  <h3
+                    className="mt-3 cursor-pointer text-lg font-semibold leading-6 text-teal-500 group-hover:text-gray-600"
+                    onClick={() => openModal(post)}
+                  >
+                    {post.title}
                   </h3>
                   <p className="mt-5 line-clamp-3 text-sm leading-6 text-white">
-                    {post.content}
+                    {post.content.substring(0, 150)}...
                   </p>
                 </div>
               </article>
@@ -42,6 +53,9 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedPost && <Modal details={selectedPost} onClose={closeModal} />}
     </>
   );
 }

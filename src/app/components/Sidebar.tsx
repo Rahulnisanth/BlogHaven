@@ -1,14 +1,15 @@
+import Link from "next/link";
 import NavLinks from "./nav-links";
 
 export default function Sidebar() {
   return (
     <div className="sticky top-4 z-50 mx-4 max-w-xl dark:bg-gray-800 rounded-lg shadow-lg md:mx-auto md:max-w-xl">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a className="block" href="/">
+        <Link className="block" href="/">
           <h1 className="text-2xl font-extrabold text-white">
             Blog<span className="text-teal-500">Haven.</span>
           </h1>
-        </a>
+        </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-8">
           <nav aria-label="Global" className="hidden md:block">

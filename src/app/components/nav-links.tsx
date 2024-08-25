@@ -12,12 +12,12 @@ export default async function NavLinks() {
         return (
           <Link key={link.name} href={link.href}>
             <li>
-              <a
+              <Link
                 className="font-bold text-white transition hover:text-gray-500/75"
                 href={link.href}
               >
                 {link.name}
-              </a>
+              </Link>
             </li>
           </Link>
         );

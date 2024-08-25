@@ -7,7 +7,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
           Blog<span className="text-teal-500">Haven.</span>
         </h1>
-        <p className="mt-6 text-lg leading-8 text-gray-600">
+        <p className="px-5 mt-6 text-lg leading-8 text-gray-600">
           Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
           cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat
           aliqua.
