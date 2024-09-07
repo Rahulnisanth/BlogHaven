@@ -1,27 +1,10 @@
-"use client";
-import { useState } from "react";
-import posts from "@/app/lib/data";
-import Modal from "@/app/components/Modal";
+import posts from "@/app/lib/placeholder-data";
+import { connectToDB } from "@/app/lib/data";
+import Link from "next/link";
 
-// Define the type for a Post
-type Post = {
-  id: string;
-  title: string;
-  date: string;
-  content: string;
-};
-
-export default function Page() {
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
-
-  function openModal(post: Post) {
-    setSelectedPost(post);
-  }
-
-  function closeModal() {
-    setSelectedPost(null);
-  }
-
+export default async function Page() {
+  const client = await connectToDB();
+  console.log(client);
   return (
     <>
       <div className="bg-white dark:bg-gray-900 py-24 sm:py-20">
@@ -35,7 +18,7 @@ export default function Page() {
             </p>
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-10 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post: Post) => (
+            {posts.map((post) => (
               <article
                 key={post.id}
                 className="flex max-w-xl flex-col items-start justify-between"
@@ -45,14 +28,14 @@ export default function Page() {
                     {post.date}
                   </time>
                 </div>
-                <div className="group relative">
-                  <h3
-                    className="mt-3 cursor-pointer text-lg font-semibold leading-6 text-teal-500 group-hover:text-gray-600"
-                    onClick={() => openModal(post)}
+                <div className="mt-3 group relative">
+                  <Link
+                    href={`post/${post.id}`}
+                    className="cursor-pointer text-lg font-semibold leading-6 text-teal-500 group-hover:text-gray-600"
                   >
                     {post.title}
-                  </h3>
-                  <p className="mt-5 text-justify line-clamp-3 text-sm leading-6 text-white">
+                  </Link>
+                  <p className="mt-3 text-justify line-clamp-3 text-sm leading-6 text-white">
                     {post.content.substring(0, 150)}...
                   </p>
                 </div>
@@ -61,9 +44,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {selectedPost && <Modal details={selectedPost} onClose={closeModal} />}
     </>
   );
 }
