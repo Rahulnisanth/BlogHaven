@@ -4,7 +4,6 @@ import { connectToDB, getPosts } from "@/app/lib/data";
 export default async function Page() {
   const client = await connectToDB();
   const posts = await getPosts();
-  // console.log(posts);
   return (
     <>
       <div className="bg-white dark:bg-gray-900 py-24 sm:py-20">

@@ -19,19 +19,9 @@ export async function getPosts(): Promise<Post[]> {
   try {
     unstable_noStore();
     await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const result = (await sql`SELECT * FROM posts`) as { rows: DatabaseRow[] };
-
     const rows: DatabaseRow[] = result.rows;
-
-    const posts: Post[] = rows.map((row) => ({
-      id: row.id,
-      title: row.title,
-      date: row.date,
-      content: row.content,
-    }));
-
-    return posts;
+    return rows;
   } catch (err) {
     console.log(err);
     return [];
