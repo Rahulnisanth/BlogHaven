@@ -1,5 +1,5 @@
 "use client";
-import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Post } from "../types";
 interface ModalProps {
   details: Post;
