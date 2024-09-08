@@ -6,7 +6,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ details }) => {
-  const { title, content } = details;
+  const { title, author, date, content } = details;
 
   return (
     <Dialog
@@ -27,7 +27,10 @@ const Modal: React.FC<ModalProps> = ({ details }) => {
             >
               {title}
             </DialogTitle>
-            <p className="my-4 md:my-6 text-justify text-md text-white">
+            <p className="text-md font-semibold text-gray-300">
+              {date} | {author}
+            </p>
+            <p className="my-4 md:my-5 text-justify text-md text-white">
               {content}
             </p>
           </DialogPanel>

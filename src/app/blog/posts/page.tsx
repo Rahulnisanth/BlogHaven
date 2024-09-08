@@ -38,7 +38,7 @@ export default async function Page() {
               >
                 <div className="flex items-center gap-x-4 text-xs">
                   <time dateTime={post.date} className="text-gray-300">
-                    {post.date}
+                    {post.date} | {post.author}
                   </time>
                 </div>
                 <div className="mt-3 group relative">
