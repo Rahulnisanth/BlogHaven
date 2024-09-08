@@ -1,16 +1,11 @@
 "use client";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { Post } from "../types";
+interface ModalProps {
+  details: Post;
+}
 
-type PostProps = {
-  details: {
-    id: string;
-    title: string;
-    date: string;
-    content: string;
-  };
-};
-
-export default function Modal({ details }: PostProps) {
+const Modal: React.FC<ModalProps> = ({ details }) => {
   const { title, content } = details;
 
   return (
@@ -38,4 +33,6 @@ export default function Modal({ details }: PostProps) {
       </div>
     </Dialog>
   );
-}
+};
+
+export default Modal;

@@ -1,6 +1,7 @@
 import { createClient } from "@vercel/postgres";
 import { sql } from "@vercel/postgres";
 import { unstable_noStore } from "next/cache";
+import { Post, DatabaseRow } from "../types";
 
 export async function connectToDB() {
   const client = createClient();
@@ -14,13 +15,25 @@ export async function connectToDB() {
   }
 }
 
-export async function getPosts() {
+export async function getPosts(): Promise<Post[]> {
   try {
     unstable_noStore();
     await new Promise((resolve) => setTimeout(resolve, 3000));
-    const data = await sql`SELECT * FROM posts`;
-    return data.rows;
+
+    const result = (await sql`SELECT * FROM posts`) as { rows: DatabaseRow[] };
+
+    const rows: DatabaseRow[] = result.rows;
+
+    const posts: Post[] = rows.map((row) => ({
+      id: row.id,
+      title: row.title,
+      date: row.date,
+      content: row.content,
+    }));
+
+    return posts;
   } catch (err) {
     console.log(err);
+    return [];
   }
 }
