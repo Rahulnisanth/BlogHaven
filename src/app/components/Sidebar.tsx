@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NavLinks from "./nav-links";
+import UserButton from "./authentication/user-button";
 
 export default function Sidebar() {
   return (
@@ -12,18 +13,26 @@ export default function Sidebar() {
         </Link>
 
         <div className="flex flex-1 items-center justify-end space-x-8">
-          <nav aria-label="Global" className="hidden md:block">
+          <nav
+            aria-label="Global"
+            className="hidden md:flex items-center gap-6 text-sm"
+          >
             <ul className="flex items-center gap-6 text-sm">
               <NavLinks />
             </ul>
+            <UserButton />
           </nav>
         </div>
 
         {/* Mobile Navigation */}
-        <nav aria-label="Global" className="block md:hidden">
+        <nav
+          aria-label="Global"
+          className="flex items-center justify-center gap-6 text-sm md:hidden"
+        >
           <ul className="flex items-center justify-center gap-6 text-sm">
             <NavLinks />
           </ul>
+          <UserButton />
         </nav>
       </div>
     </div>

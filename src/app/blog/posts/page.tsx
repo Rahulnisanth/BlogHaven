@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { connectToDB, getPosts } from "@/app/lib/data";
+import { auth } from "../../../../auth.config";
 
 export default async function Page() {
   const client = await connectToDB();
   const posts = await getPosts();
+  const session = await auth();
   return (
     <>
-      <div className="bg-white dark:bg-gray-900 py-24 sm:py-20">
+      <div className="bg-white dark:bg-gray-900 py-10 md:py-24 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
             <div className="lg:w-3/4">
@@ -17,14 +19,16 @@ export default async function Page() {
                 Learn how to grow your business with our expert advice.
               </p>
             </div>
-            <div className="mt-4 lg:mt-0 lg:w-1/4 flex items-center justify-start lg:justify-end">
-              <Link
-                href={`post/insert`}
-                className="text-2xl font-semibold text-teal-500 hover:text-teal-400"
-              >
-                Add post →
-              </Link>
-            </div>
+            {session?.user && (
+              <div className="mt-4 lg:mt-0 lg:w-1/4 flex items-center justify-start lg:justify-end">
+                <Link
+                  href={`post/insert`}
+                  className="text-2xl font-semibold text-teal-500 hover:text-teal-400"
+                >
+                  Add post →
+                </Link>
+              </div>
+            )}
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-10 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts?.map((post) => (

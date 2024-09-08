@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Description,
   Field,
@@ -13,9 +13,12 @@ import {
   Button,
 } from "@headlessui/react";
 import clsx from "clsx";
+import { User } from "next-auth";
+import { getSession } from "next-auth/react";
 
 export default function Page() {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     id: "",
     title: "",
@@ -37,7 +40,7 @@ export default function Page() {
     e.preventDefault();
     const uuid = uuidv4();
     fetch(
-      `/api/posts?id=${uuid}&title=${formData.title}&content=${formData.content}&date=${formData.date}`,
+      `/api/posts?id=${uuid}&author=${user?.name}&title=${formData.title}&content=${formData.content}&date=${formData.date}`,
       {
         method: "POST",
         headers: {
@@ -47,7 +50,6 @@ export default function Page() {
       }
     )
       .then(() => {
-        // Clear form fields after submission
         setFormData({
           id: "",
           title: "",
@@ -58,6 +60,13 @@ export default function Page() {
       })
       .catch(console.error);
   };
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session?.user) router.push("/blog/posts");
+      setUser(session?.user || null);
+    });
+  }, []);
 
   return (
     <div className="min-h-[90vh] flex items-center justify-center px-4">

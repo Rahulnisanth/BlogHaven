@@ -1,4 +1,5 @@
 import Link from "next/link";
+import UserButton from "./authentication/user-button";
 
 const nav_links = [
   { name: "About", href: "/blog/about" },
