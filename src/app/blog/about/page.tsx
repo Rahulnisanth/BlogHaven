@@ -8,7 +8,7 @@ const Page = () => {
     <>
       <section className="min-h-[90vh] bg-white dark:bg-gray-900">
         <div className="flex items-center justify-center">
-          <div className="max-w-lg mx-auto my-10 pt-12 rounded-lg shadow-md p-5">
+          <div className="max-w-lg mx-auto my-10 pt-5 rounded-lg shadow-md p-5">
             <Image
               className="w-32 h-32 rounded-full mx-auto"
               src={ProfileImage}
