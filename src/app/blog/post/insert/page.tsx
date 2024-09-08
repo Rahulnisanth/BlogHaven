@@ -70,7 +70,7 @@ export default function Page() {
 
   return (
     <div className="min-h-[90vh] flex items-center justify-center px-4">
-      <div className="w-full max-w-lg px-4">
+      <div className="-mt-2 md:mt-0 w-full max-w-lg px-4">
         <form onSubmit={handleSubmit}>
           <Fieldset className="space-y-6 rounded-xl bg-white/5 p-6 sm:p-10">
             <Legend className="text-base/7 font-semibold text-white">
