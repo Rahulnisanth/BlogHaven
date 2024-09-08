@@ -7,7 +7,7 @@ export default function Sidebar() {
     <div className="sticky top-4 z-50 mx-4 max-w-xl dark:bg-gray-800 rounded-lg shadow-lg md:mx-auto md:max-w-xl">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link className="block" href="/">
-          <h1 className="text-2xl font-extrabold text-white">
+          <h1 className="text-xl md:text-2xl font-extrabold text-white">
             Blog<span className="text-teal-500">Haven.</span>
           </h1>
         </Link>

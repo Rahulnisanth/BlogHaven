@@ -12,7 +12,7 @@ export function SignIn({ provider }: { provider?: string }) {
         className="font-bold text-white transition hover:text-gray-500/75"
         type="submit"
       >
-        Sign In
+        Login
       </button>
     </form>
   );
@@ -31,7 +31,7 @@ export function SignOut() {
         type="submit"
         className="font-bold text-white transition hover:text-gray-500/75"
       >
-        Sign Out
+        Logout
       </button>
     </form>
   );
