@@ -17,6 +17,10 @@ import { User } from "next-auth";
 import { getSession } from "next-auth/react";
 
 export default function Page() {
+  // const PROMPT =
+  //   "Consider yourself as a creative blog writer and write a blog post within 50 words from the below attached title";
+  // const [generating, setGenerating] = useState(false);
+  // const [content, setContent] = useState("");
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
@@ -61,7 +65,37 @@ export default function Page() {
       .catch(console.error);
   };
 
+  // const generateContent = () => {
+  //   setGenerating(true);
+  //   if (!formData?.title) {
+  //     return false;
+  //   }
+  //   const requestParams = {
+  //     model: "gpt-3.5-turbo",
+  //     messages: [
+  //       { role: "system", content: PROMPT + formData?.title },
+  //       { role: "user", content: formData?.title },
+  //     ],
+  //   };
+  //   fetch("https://api.openai.com/v1/chat/completions", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+  //     },
+  //     body: JSON.stringify(requestParams),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setContent(data.choices[0].message.content);
+  //       console.log(data.choices[0].message.content);
+  //       setGenerating(false);
+  //     })
+  //     .catch(console.error);
+  // };
+
   useEffect(() => {
+    console.log("API KEY => ", process.env.OPENAI_API_KEY);
     getSession().then((session) => {
       if (!session?.user) router.push("/blog/posts");
       setUser(session?.user || null);
@@ -94,7 +128,7 @@ export default function Page() {
               <Label className="text-sm/6 font-medium text-white">
                 Contents
               </Label>
-              <Description className="text-sm/6 text-white/50">
+              <Description>
                 If you have it, we'd like to know about it.
               </Description>
               <Textarea
@@ -107,6 +141,18 @@ export default function Page() {
                   "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                 )}
               />
+              {/* <Button
+                onClick={generateContent}
+                type="button"
+                className="mt-2 text-center rounded-md bg-white/5 py-1.5 px-3 text-sm/6 font-semibold text-white"
+              >
+                Generate using AI
+              </Button>
+              {generating && (
+                <p className="text-sm/6 text-white/50">
+                  Generating, Please wait.
+                </p>
+              )} */}
             </Field>
 
             <Input
